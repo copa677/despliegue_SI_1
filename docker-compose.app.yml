@@ -1,0 +1,30 @@
+services:
+  node-backend:
+    build: ./server/
+    container_name: node_backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - angular-app
+    networks:
+      - backend
+      - frontend
+
+  angular-app:
+    build: ./front2/
+    container_name: angular_frontend
+    ports:
+      - "4000:4000"
+    environment:
+      - API_URL=http://node-backend:3005
+    networks:
+      - frontend
+      - backend
+
+networks:
+  backend:
+    external: true
+  frontend:
+    driver: bridge

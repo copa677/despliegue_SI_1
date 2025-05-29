@@ -1,0 +1,40 @@
+<!-- Formulario de registro de nuevo almacén -->
+<div class="parent">
+    
+  <div class="div1">
+    <form id="almacen-form" class="form" [formGroup]="AlmacenForm">
+      
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre">
+      </div>
+      <div class="form-group">
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" formControlName="direccion">
+      </div>
+      <div class="form-group">
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad" formControlName="ciudad">
+      </div>
+    </form>
+  </div>
+  <div class="div2">
+    <form id="almacen-form" class="form" [formGroup]="AlmacenForm">
+      <div class="form-group">
+        <label for="capacidad_actual">Capacidad Actual:</label>
+        <input type="number" id="capacidad_actual" formControlName="capacidad_actual">
+      </div>
+      <div class="form-group">
+        <label for="capacidad_total">Capacidad Total:</label>
+        <input type="number" id="capacidad_total" formControlName="capacidad_total">
+      </div>
+      <button (click)="newAlmacen()" type="button" class="btn-submit" >Registrar</button>
+       <button type="button" class="btn-submit" routerLink="/home/almacen" >Volver</button>
+    </form>
+  </div>
+ 
+  <div class="div3">
+    <h2>{{operacion}} Nuevo Almacén</h2>
+  </div>
+</div>
+

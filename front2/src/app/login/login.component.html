@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+    <div class="text-center mb-4">
+      <img src="../../../assets/img/autorepuesto.png" alt="Logo AutoParts" class="img-fluid" style="max-height: 120px;">
+      <h3 class="mt-3 fw-bold">Login</h3>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" [(ngModel)]="username" class="form-control" id="usuario" placeholder="Usuario">
+      <label for="usuario">Usuario</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="password" [(ngModel)]="password" class="form-control" id="password" placeholder="Password">
+      <label for="password">Password</label>
+    </div>
+
+    <div class="d-grid">
+      <button type="button" class="btn btn-primary btn-lg" (click)="login()">Aceptar</button>
+    </div>
+
+    <div class="text-center mt-3" *ngIf="loading">
+      <app-spinner></app-spinner>
+    </div>
+  </div>
+</div>

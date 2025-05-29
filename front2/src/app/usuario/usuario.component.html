@@ -1,0 +1,34 @@
+<h2 class="text-center">Usuarios</h2>
+<div class="table-responsive">
+  <table id="tablaDatos" class="table table-bordered table-minimalista">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nro Usuario</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">telefono</th>
+        <th scope="col">Habilitado</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let listU of listUser">
+        <tr *ngIf="listU">
+          <th scope="row">{{ listU.user_id !== undefined ? listU.user_id - 1000 : '' }}</th>
+          <td>{{ listU.user_id }}</td>
+          <td>{{ listU.username }}</td>
+          <td>{{ listU.correoelectronico }}</td>
+          <td>{{ listU.telefono }}</td>
+          <td>{{ userHabilitadoMap[listU.username] }}</td>
+          <td>
+            <button *ngIf="eliminar" (click)="DesabilitarUser(listU.username)" type="button" class="btn btn-primary btn-sm btn-separado">Deshabilitar</button>
+            <button *ngIf="editar" [routerLink]="['/home/userpermisos', listU.username]" type="button" class="btn btn-primary btn-sm btn-separado">Permisos</button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<button *ngIf="insertar" routerLink="/home/registro" type="button" class="btn btn-primary btn-sm btn-separado">Insertar</button>

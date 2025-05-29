@@ -1,0 +1,77 @@
+
+<body>
+    <div id="invoice-box" class="invoice-box">
+        <button onclick="printDiv('invoice-box')" type="button" class="btn btn-primary btn-imprimir no-print">Imprimir</button>
+        <table>
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <h1>Boleta de Compra</h1>
+                            </td>
+                            <td>
+                                Boleta #{{codigo}}<br>
+                                Fecha: {{fecha}}<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                AUTOREPUESTOS-CUZ<br>
+                                Calle 123<br>
+                                EL TORNO<br>
+                                ADMINISTRADOR: {{nombre_administrador}}
+                            </td>
+                            <td>
+                                PROVEEDOR: {{nombre_proveedor}}<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>
+                    Método de Pago  
+                </td>
+                <td>
+                    Fecha de Pago
+                </td>
+            </tr>
+            <tr class="details">
+                <td>
+                    {{metodo_pago}}
+                </td>
+                <td>
+                    {{fecha}}
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>Artículo</td>
+                <td>Cantidad</td>
+                <td>Precio Unitario</td>
+                <td>Importe</td>
+            </tr>
+            <tr *ngFor="let bol of listdetalleBoletaCompra">
+                <td style="text-align: center;">{{ bol.nombre_producto }}</td>
+                <td style="text-align: center;">{{ bol.cantidad }}</td>
+                <td style="text-align: center;">$ {{ bol.precio_unitario }}</td>
+                <td style="text-align: center;">$ {{ bol.importe }}</td>
+            </tr>
+            <tr class="total">
+                <td colspan="3" style="text-align: right;">Total:</td>
+                <td style="text-align: right">$ {{ total }}</td> 
+            </tr>        
+        </table>
+        <button routerLink="/home/comprar" type="button" class="btn btn-secondary btn-volver no-print">Volver</button>
+    </div>
+    
+</body>
+
+
+

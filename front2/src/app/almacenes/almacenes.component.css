@@ -1,0 +1,82 @@
+.container {
+  width: 100%;
+  /* margin: 0 auto; */
+  margin-top: 7vh;
+  /* background-color: #fff; */
+  /* border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.50); */
+}
+
+h1, h2 {
+  text-align: center;
+  color: #333;
+  font-size: 3vh;
+}
+
+.almacenes {
+  margin-bottom: 20px;
+}
+
+.almacenes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.almacenes-table th,
+.almacenes-table td {
+  border: 1px solid #0c0808;
+  padding: 8px;
+  text-align: left;
+}
+
+.almacenes-table th {
+  background-color: #eeecec;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.btn-primary{
+  width: 7vh;
+  margin: 2px;
+}
+
+.btn-submit {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #218838;
+}
+
+.separator {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 60%;
+  }
+}

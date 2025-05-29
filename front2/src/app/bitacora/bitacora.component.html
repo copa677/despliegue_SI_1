@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <input type="text" id="filtroNombre" class="form-control" placeholder="Filtrar por Nombre">
+    </div>
+    <div class="col-md-6">
+      <input type="date" id="filtroFecha" class="form-control" placeholder="Filtrar por Fecha">
+    </div>
+  </div>
+
+  <button (click)="filtro()" class="btn btn-primary">Filtrar</button>
+
+  <div class="table-responsive">
+    <table id="tablaDatos" class="table table-bordered table-minimalista">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Direccion IP</th>
+          <th scope="col">Fecha y hora</th>
+          <th scope="col">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let listP of listBitacora">
+          <th scope="row">{{ listP.id_bitacora }}</th>
+          <td>{{listP.nombre_usuario}}</td>
+          <td>{{listP.ip}}</td>
+          <td>{{listP.fechahora}}</td>
+          <td>{{listP.descripcion}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

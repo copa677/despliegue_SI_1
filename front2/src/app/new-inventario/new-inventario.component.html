@@ -1,0 +1,23 @@
+<div class="form-container">
+    <h2>Formulario de Gestión de Inventario</h2>
+    <form id="inventarioForm">
+      <label for="producto">Producto:</label>
+      <select id="producto" name="producto" [(ngModel)]="productoSeleccionado">
+        <option *ngFor="let producto of listproducts" [ngValue]="producto">{{ producto.categoria }}</option>
+      </select>
+      
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" min="1" value="1" [(ngModel)]="cantidadSeleccionada">
+      
+      <label for="almacen">Almacén:</label>
+      <select id="almacen" name="almacen" [(ngModel)]="alamcenSeleccionado">
+        <option *ngFor="let almacen of listAlamcen" [ngValue]="almacen">{{ almacen.nombre }}</option>
+      </select>
+      
+      <div class="button-container">
+        <button (click)="newInventario()" class="btn-submit">Agregar Inventario</button>
+        <button class="btn-submit" routerLink="/home/inventario">Volver</button>
+      </div>
+    </form>
+  </div>
+  

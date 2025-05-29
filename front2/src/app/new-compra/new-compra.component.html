@@ -1,0 +1,75 @@
+<div >
+    <h1>Formulario de Compra</h1>
+  
+    <form class=".container">
+      <div class="parent">
+        <div class="div1"> 
+        
+       
+      <h2>Información del Proveedor</h2>
+
+      <label for="descripcion">Nombre y Direccion:</label>
+      <select id="producto" name="producto" [(ngModel)]="proveedorSeleccionado">
+        <option *ngFor="let proveedor of listproveedores" [ngValue]="proveedor">{{ proveedor.nombre }} - {{ proveedor.direccion }}</option>
+      </select>
+
+      <label for="descripcion">Descripcion:</label>
+      <input type="text" id="descripcion" name="descripcion" required [(ngModel)]="descripcion">
+      
+      <h2>Método de pago</h2>
+      <label for="metodoPago">Método de pago:</label>
+      <select id="metodoPago" name="metodoPago" required [(ngModel)]="metodoPago">
+        <option value="">Seleccione un método de pago</option>
+        <option value="Efectivo">Efectivo</option>
+        <option value="QR">QR</option>
+      </select>
+  
+    </div>
+    <div class="div2"> 
+      <label for="precio">Producto:</label>
+      <select id="producto" name="producto" [(ngModel)]="productoSeleccionado">
+        <option *ngFor="let producto of listproducts" [ngValue]="producto">{{ producto.categoria }} - {{ producto.marca }}</option>
+      </select>
+      
+      <label for="precio">Precio:</label>
+          <input type="number" id="precio" name="precio" [(ngModel)]="precioSeleccionado" min="0" step="0.01">
+
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" min="1" value="1" [(ngModel)]="cantidadSeleccionada">
+  
+      <button type="button" (click)="agregarProducto()">Agregar producto</button>
+        
+      <table id="productosSeleccionados">
+        <thead>
+          <tr>
+            <th>Eliminar</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productosSeleccionados">
+            <td><button (click)="eliminarProducto(producto)">Eliminar</button></td>
+            <td>{{ producto.producto.categoria }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td>${{ producto.precio}}</td>
+            <td>${{ producto.subtotal }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">Total</td>
+            <td id="total">${{ calcularTotal() }}</td>
+          </tr>
+        </tfoot>
+      </table>
+  
+      <button (click)="ConfirmarCompra()" type="submit">Confirmar Compra</button>
+      <button type="button" routerLink="/home/comprar">Volver</button>
+    </div>
+    </div>
+    </form>
+  </div>
+  

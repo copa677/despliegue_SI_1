@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h3 class="card-title mb-4">Registrar Nuevo Usuario</h3>
+            <form>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre completo</label>
+                <input type="text" [(ngModel)]="nombre" autocomplete="false" class="form-control" id="nombre" name="nombre" placeholder="Ingrese nombre">
+              </div>
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <div class="input-group">
+                  <span class="input-group-text">+591</span>
+                  <input type="text" [(ngModel)]="telefono" autocomplete="false" class="form-control" id="telefono" name="telefono" placeholder="Ingrese teléfono">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" [(ngModel)]="email" autocomplete="false" class="form-control" id="email" name="email" placeholder="Ingrese email">
+              </div>
+              <div class="mb-3">
+                <label for="username" class="form-label">Usuario</label>
+                <input type="text" [(ngModel)]="username" autocomplete="false" class="form-control" id="username" name="username" placeholder="Ingrese usuario">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" [(ngModel)]="password" autocomplete="false" class="form-control" id="password" name="password" placeholder="Ingrese contraseña">
+              </div>
+              <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+                <input type="password" [(ngModel)]="confirm_password" autocomplete="false" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirmar contraseña">
+              </div>
+              <div class="mb-3">
+                <label for="permisos" class="form-label">Permiso</label>
+                <select class="form-select" id="permisos" name="permisos" [(ngModel)]="permisos">
+                  <option selected>Seleccionar categoria</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                </select>
+              </div>
+              <div class="d-grid gap-2">
+                <button type="button" class="btn btn-primary btn-lg" (click)="addUser()">Aceptar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

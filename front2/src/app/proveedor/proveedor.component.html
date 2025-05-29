@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>Proveedores</h2>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th> <!-- Cambiado de "Seleccionar" a "Acciones" -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let proveedor of proveedores">
+                    <td>{{ proveedor.nombre }}</td>
+                    <td>{{ proveedor.direccion }}</td>
+                    <td>{{ proveedor.telefono }}</td>
+                    <td>
+                        <button *ngIf="eliminar" class="btn btn-primary btn-sm" (click)="deleteProveedor(proveedor.codigo!,proveedor.nombre)">
+                            Eliminar
+                        </button>
+                        <button *ngIf="editar" class="btn btn-secondary btn-sm" [routerLink]="'/home/edit/' + proveedor.codigo">
+                            Modificar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button *ngIf="insertar" class="btn btn-primary" (click)="navegar()">
+        Nuevo Proveedor
+    </button>
+</div>

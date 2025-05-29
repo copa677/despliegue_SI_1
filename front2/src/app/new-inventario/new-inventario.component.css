@@ -1,0 +1,81 @@
+/* Contenedor del formulario */
+.form-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el título */
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+/* Estilos para los elementos del formulario */
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-family: 'Arial', sans-serif;
+  color: #555;
+}
+
+.form-container select,
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Contenedor para los botones */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Estilos para los botones */
+.btn-submit {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.btn-submit:last-child {
+  margin-right: 0;
+}
+
+.btn-submit:hover {
+  background-color: #218838;
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 480px) {
+  .button-container {
+    flex-direction: column;
+  }
+
+  .btn-submit {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  .btn-submit:last-child {
+    margin-bottom: 0;
+  }
+}

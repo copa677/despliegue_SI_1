@@ -1,0 +1,18 @@
+/* Estilos CSS personalizados */
+body {
+  font-family: Arial, sans-serif;
+}
+.table-minimalista th,
+.table-minimalista td {
+  border: none;
+}
+.table-minimalista th {
+  background-color: #f2f2f2;
+  font-weight: 500;
+}
+.table-minimalista tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.table-minimalista tbody tr:hover {
+  background-color: #f0f0f0;
+}

@@ -1,0 +1,18 @@
+<h1>{{operacion}} Proveedor</h1>
+
+        <form #proveedorForm="ngForm" (ngSubmit)="validarYAgregarProveedor()">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" required [(ngModel)]="nombre"><br>
+        <span class="error" id="nombreError"></span><br>
+        <label for="direccion">Dirección:</label><br>
+        <input type="text" id="direccion" name="direccion" required [(ngModel)]="direccion"><br>
+        <span class="error" id="direccionError"></span><br>
+        <label for="telefono">Teléfono:</label><br>
+        <input type="text" id="telefono" name="telefono" required [(ngModel)]="telefono"><br>
+        <span class="error" id="telefonoError"></span><br>
+        <button (click)="newProveedor()" type="submit">Agregar Proveedor</button>
+        <button (click)="navegar()" type="submit">Volver</button>
+    </form>
+
+    <br>
+

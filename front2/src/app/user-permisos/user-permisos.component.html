@@ -1,0 +1,45 @@
+<h2 class="text-center">Gestionar Permisos de Usuarios</h2>
+<div class="form-group">
+  <label for="vista">Seleccionar Vista:</label>
+  <select id="vista" [(ngModel)]="selectedVista" (change)="getPermisos()">
+    <option *ngFor="let vista of vistas" [value]="vista">{{ vista }}</option>
+  </select>
+</div>
+<div class="table-responsive">
+  <table id="tablaPermisos" class="table table-bordered table-minimalista">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Ver</th>
+        <th scope="col">Insertar</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Eliminar</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let user of listUser; let i = index">
+        <tr>
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ user.username }}</td>
+          <td>
+            <input type="checkbox" [(ngModel)]="user.perm_ver">
+          </td>
+          <td>
+            <input type="checkbox" [(ngModel)]="user.perm_insertar">
+          </td>
+          <td>
+            <input type="checkbox" [(ngModel)]="user.perm_editar">
+          </td>
+          <td>
+            <input type="checkbox" [(ngModel)]="user.perm_eliminar">
+          </td>
+          <td>
+            <button (click)="updatePermisos(user)" type="button" class="btn btn-primary btn-sm">Guardar</button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

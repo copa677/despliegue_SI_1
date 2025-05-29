@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0px;
+  height: 100%;
+}
+.menu-container {
+  flex: 0 0 200px;
+  /* max-width: px;  Ajusta el ancho máximo según sea necesario */
+  
+  /*overflow-y: auto;  Añade desplazamiento vertical si es necesario */
+  background-color: #08213a;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+.form-menu{
+  height: 100%;
+}
+
+.menu {
+  flex: 29; /* altura automática */
+  padding: 0px;
+  width: 250px;
+  overflow-y: auto;
+  height: 100%;
+  /* background-color: #08213a; */
+}
+
+.h2-menu {
+  margin-top: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+
+.li-menu {
+  margin-bottom: 10px;
+}
+
+a, .btn {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 180px;
+ /* top: 10px;
+  right: 10px; */
+  bottom: 10px;
+ border-radius: 5px;
+ background-color: rgb(222, 4, 4);
+
+
+}
+.bottom-buttons:hover, .cerrar-sesion:hover{
+  background-color: rgb(207, 4, 4);
+  color: black;
+}
+.cerrar-sesion{
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  width: 100%;
+  padding: 10px;
+  color: #eee2e2;
+  font-size: 2vh;
+  
+}
+.btn {
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+.li-menu:hover, .btn:hover {
+  background-color: #0056b3;
+}
+

@@ -1,0 +1,41 @@
+<div class="container">
+
+  <h1>Gestión de Almacenes</h1>
+  
+  <div class="almacenes">
+    <h2>Almacenes Registrados</h2>
+    <div class="table-responsive">
+      <table id="almacenes-table" class="almacenes-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Ciudad</th>
+            <th>Capacidad Actual</th>
+            <th>Capacidad Total</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí se mostrarán los almacenes registrados -->
+          <tr *ngFor="let almacen of almacenes">
+            <td>{{ almacen.nombre }}</td>
+            <td>{{ almacen.direccion }}</td>
+            <td>{{ almacen.ciudad }}</td>
+            <td>{{ almacen.capacidad_actual }}</td>
+            <td>{{ almacen.capacidad_total }}</td>
+            <td>
+              <button *ngIf="editar" routerLink="/home/editAlma/{{almacen.id}}" class="btn btn-primary btn-sm" >Editar</button>
+              <button *ngIf="eliminar" (click)="deleteAlamcen(almacen.id!,almacen.nombre)" class="btn btn-secondary btn-sm">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="button-group">
+        <button *ngIf="insertar" class="btn-submit" routerLink="/home/addAlma">Agregar Almacen</button>
+        <button class="btn-submit" routerLink="/home/inventario">Ver Inventario</button>
+      </div>
+    </div>
+    
+  </div>
+</div>

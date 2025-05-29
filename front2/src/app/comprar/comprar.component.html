@@ -1,0 +1,36 @@
+<h2 class="text-center">Boletas De Compra</h2>
+<div class="table-responsive">
+  <table id="tablaDatos" class="table table-bordered table-minimalista">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nro Boleta</th>
+        <th scope="col">Proveedor</th>
+        <th scope="col">Administrador</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Método de Pago</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let listP of listcompra">
+        <tr *ngIf="listP">
+          <th scope="row">{{ listP.nroboleta !== undefined ? listP.nroboleta - 1000 : '' }}</th>
+          <td>{{ listP.nroboleta }}</td>
+          <td>{{ listP.nombre_proveedor }}</td>
+          <td>{{ listP.nombre_administrador }}</td>
+          <td>{{ listP.fecha }}</td>
+          <td>{{ listP.metodo_pago_nombre }}</td>
+          <td>{{ listP.total }}</td>
+          <td>
+            <button *ngIf="eliminar" (click)="deleteBoletaCompra(listP.nroboleta!,listP.nombre_proveedor)" type="button" class="btn btn-primary btn-sm btn-separado">Eliminar</button>
+            <button [routerLink]="['/home/BoletaCompra', listP.nroboleta]" type="button" class="btn btn-primary btn-sm btn-separado">Detalles</button>
+
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<button *ngIf="insertar" routerLink="/home/Newcompra" type="button" class="btn btn-primary btn-sm btn-separado">Insertar</button>

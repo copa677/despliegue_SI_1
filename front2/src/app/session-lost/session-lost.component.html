@@ -1,0 +1,18 @@
+<!-- session-lost.component.html -->
+<div class="modal fade" id="sessionModal" tabindex="-1" aria-labelledby="sessionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sessionModalLabel">Sesión a punto de expirar</h5>
+        </div>
+        <div class="modal-body">
+          Su sesión está a punto de expirar debido a inactividad. ¿Desea extender su sesión?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="endSession()">Cerrar sesión</button>
+          <button type="button" class="btn btn-primary" (click)="extendSession()">Extender sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
