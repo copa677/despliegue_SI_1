@@ -9,6 +9,8 @@ import routesProducto from '../routes/producto';
 import routerinventario from '../routes/inventario';
 import routeralmacen from '../routes/almacen';
 import routerboletacompra from '../routes/boleta_compra';
+import routerfactura from '../routes/factura';
+import routernotasalida from '../routes/nota_salida';
 
 class Server{
     private app: Application;
@@ -38,6 +40,8 @@ class Server{
         this.app.use('/api/almacen',routeralmacen);
         this.app.use('/api/inventario',routerinventario);
         this.app.use('/api/boletacompra',routerboletacompra);
+        this.app.use('/api/factura',routerfactura);
+        this.app.use('/api/notasalida',routernotasalida);
     }
 
     midlewares(){

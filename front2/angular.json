@@ -13,37 +13,33 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/front2",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/assets"
-            ],
-            "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "src/styles.css"
-            ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
-          },
+  "outputPath": "dist/front2",
+  "index": "src/index.html",
+  "browser": "src/main.ts",
+  "polyfills": [
+    "zone.js"
+  ],
+  "tsConfig": "tsconfig.app.json",
+  "assets": [
+    "src/assets"
+  ],
+  "styles": [
+    "node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "node_modules/ngx-toastr/toastr.css",
+    "src/styles.css"
+  ],
+  "scripts": [
+    "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+  ]
+},
+
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "2MB",
+                  "maximumError": "3MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -51,7 +47,15 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "allowedCommonJsDependencies": [
+                 "canvg",
+                 "exceljs",
+                 "file-saver",
+                 "html2canvas",
+                 "rgbcolor",
+                 "raf"
+                ]
             },
             "development": {
               "optimization": false,

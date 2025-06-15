@@ -34,7 +34,7 @@ export class AlmacenesComponent implements OnInit {
     private _bitacoraServices: BitacoraService,
     private _errorServices: ErrorService,
   ) {
-    
+
   }
   ngOnInit(): void {
     this.getListAlmacenes();
@@ -42,9 +42,9 @@ export class AlmacenesComponent implements OnInit {
     this.getPermisos();
   }
 
-  getPermisos(){
-    this._permisoServices.getPermiso(this.username,"almacen").subscribe((data: Permiso[])=>{
-      data.forEach((perm: Permiso)=>{
+  getPermisos() {
+    this._permisoServices.getPermiso(this.username, "almacen").subscribe((data: Permiso[]) => {
+      data.forEach((perm: Permiso) => {
         this.insertar = perm.perm_insertar;
         this.editar = perm.perm_editar!;
         this.eliminar = perm.perm_eliminar;
@@ -55,40 +55,44 @@ export class AlmacenesComponent implements OnInit {
   getUsernameFromToken() {
     const token = localStorage.getItem('token'); // Obtén el token JWT almacenado en el localStorage
     if (token) {
-      const tokenParts = token.split('.'); 
+      const tokenParts = token.split('.');
       if (tokenParts.length === 3) {
         const payload = JSON.parse(atob(tokenParts[1])); // Decodifica la parte del payload
-        this.username = payload.username; 
-       
+        this.username = payload.username;
+
       } else {
-        this.toastr.error('El token no tiene el formato esperado.','Error');
+        this.toastr.error('El token no tiene el formato esperado.', 'Error');
       }
     } else {
-      this.toastr.error('No se encontró un token en el localStorage.','Error');
+      this.toastr.error('No se encontró un token en el localStorage.', 'Error');
     }
   }
 
-  
 
-  getListAlmacenes(){
-    this._alamcenServices.getlistAlmacenes().subscribe((data)=>{
-      this.almacenes=data;
+
+  getListAlmacenes() {
+    this._alamcenServices.getlistAlmacenes().subscribe((data) => {
+      this.almacenes = data;
     })
   }
 
 
 
-  deleteAlamcen(id: number,nombre: string){
-    this._alamcenServices.deleteAlmacen(id).subscribe(()=>{
+  deleteAlamcen(id: number, nombre: string) {
+    this._alamcenServices.deleteAlmacen(id).subscribe(() => {
       this.getListAlmacenes();
       this._bitacoraServices.ActualizarBitacora(`El almacen ${nombre}, fue eliminado`)
-      this.toastr.warning(`El Almacen: ${nombre}, fue eliminado con Exito`,'Almacen eliminado');
-    },error =>{
+      this.toastr.warning(`El Almacen: ${nombre}, fue eliminado con Exito`, 'Almacen eliminado');
+    }, error => {
       this._errorServices.msjError(error);
     })
   }
 
-  navegar(){
+  navegar() {
     this.router.navigate(['/home/addAlma']);
   }
+  editarAlmacen(id: number) {
+    this.router.navigate(['/home/editAlma', id]);
+  }
+
 }

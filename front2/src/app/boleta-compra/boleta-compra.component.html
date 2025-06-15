@@ -1,7 +1,7 @@
 
 <body>
     <div id="invoice-box" class="invoice-box">
-        <button onclick="printDiv('invoice-box')" type="button" class="btn btn-primary btn-imprimir no-print">Imprimir</button>
+        
         <table>
             <tr class="top">
                 <td colspan="2">
@@ -68,7 +68,7 @@
                 <td style="text-align: right">$ {{ total }}</td> 
             </tr>        
         </table>
-        <button routerLink="/home/comprar" type="button" class="btn btn-secondary btn-volver no-print">Volver</button>
+        <button (click)="volver()" type="button" class="btn btn-secondary btn-volver no-print">Volver</button>
     </div>
     
 </body>

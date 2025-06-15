@@ -23,6 +23,8 @@ const producto_1 = __importDefault(require("../routes/producto"));
 const inventario_1 = __importDefault(require("../routes/inventario"));
 const almacen_1 = __importDefault(require("../routes/almacen"));
 const boleta_compra_1 = __importDefault(require("../routes/boleta_compra"));
+const factura_1 = __importDefault(require("../routes/factura"));
+const nota_salida_1 = __importDefault(require("../routes/nota_salida"));
 class Server {
     //constuctor
     constructor() {
@@ -47,6 +49,8 @@ class Server {
         this.app.use('/api/almacen', almacen_1.default);
         this.app.use('/api/inventario', inventario_1.default);
         this.app.use('/api/boletacompra', boleta_compra_1.default);
+        this.app.use('/api/factura', factura_1.default);
+        this.app.use('/api/notasalida', nota_salida_1.default);
     }
     midlewares() {
         this.app.use(express_1.default.json());

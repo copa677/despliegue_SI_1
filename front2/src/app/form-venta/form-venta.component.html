@@ -1,0 +1,78 @@
+<div >
+    <h1>Formulario de venta</h1>
+  
+    <form class=".container">
+      <div class="parent">
+        <div class="div1"> 
+        
+       
+      <h2>Información del cliente</h2>
+      <label for="ci">CI Cliente:</label>
+      <input type="number" id="ci" name="cicliente" required [(ngModel)]="CI_Cliente">
+
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required [(ngModel)]="nombreCliente">
+  
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required [(ngModel)]="emailCliente">
+  
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" [(ngModel)]="telefonoCliente">
+  
+      <h2>Método de pago</h2>
+      <label for="metodoPago">Método de pago:</label>
+      <select id="metodoPago" name="metodoPago" required [(ngModel)]="metodoPago">
+        <option value="">Seleccione un método de pago</option>
+        <option value="Efectivo">Efectivo</option>
+        <option value="QR">QR</option>
+      </select>
+
+      <h2>Descuento</h2>
+      <input type="number" id="descuento" name="descuento" [(ngModel)]="descuentoSeleccionado" min="0" step="0.01">
+
+    </div>
+    <div class="div2"> 
+      <label for="metodoPago">Producto:</label>
+      <select id="producto" name="producto" [(ngModel)]="productoSeleccionado">
+        <option *ngFor="let producto of listproducts" [ngValue]="producto">{{ producto.categoria }} - {{ producto.marca }} - ${{ producto.precio_venta }}</option>
+      </select>
+  
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" min="1" value="1" [(ngModel)]="cantidadSeleccionada">
+  
+      <button type="button" (click)="agregarProducto()">Agregar producto</button>
+        
+      <table id="productosSeleccionados">
+        <thead>
+          <tr>
+            <th>Eliminar</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productosSeleccionados">
+            <td><button (click)="eliminarProducto(producto)">Eliminar</button></td>
+            <td>{{ producto.producto.categoria }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td>${{ producto.producto.precio_venta }}</td>
+            <td>${{ producto.subtotal }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">Total</td>
+            <td id="total">${{ calcularTotal() }}</td>
+          </tr>
+        </tfoot>
+      </table>
+  
+      <button (click)="ConfirmarVenta()" type="submit">Confirmar Venta</button>
+      <button type="button" routerLink="/home/vender">Volver</button>
+    </div>
+    </div>
+    </form>
+  </div>
+  

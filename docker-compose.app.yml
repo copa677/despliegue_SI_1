@@ -6,6 +6,9 @@ services:
       - "3001:3001"
     environment:
       - NODE_ENV=development
+    volumes:
+      - ./server:/app          # Monta tu código en /app
+      - /app/node_modules      # Evita que se sobrescriba node_modules
     depends_on:
       - angular-app
     networks:

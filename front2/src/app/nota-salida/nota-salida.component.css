@@ -1,0 +1,32 @@
+/* Estilos CSS personalizados */
+body {
+  font-family: Arial, sans-serif;
+}
+.table-responsive{
+  margin:0 2px ;
+}
+.text-center{
+  padding-top: 7vh;
+}
+.table-minimalista th,
+.table-minimalista td {
+  border: none;
+}
+
+.table-minimalista th {
+  background-color: #f2f2f2;
+  font-weight: 500;
+}
+
+.table-minimalista tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table-minimalista tbody tr:hover {
+  background-color: #792c2c;
+}
+
+/* Espaciar más los botones */
+.btn-separado {
+  margin: 10px; /* Espacio a la derecha de cada botón */
+}

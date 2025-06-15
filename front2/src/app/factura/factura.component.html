@@ -1,0 +1,85 @@
+
+<body>
+    <div id="invoice-box" class="invoice-box">
+        <button onclick="printDiv('invoice-box')" type="button" class="btn btn-primary btn-imprimir no-print">Imprimir</button>
+        <table>
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <h1>Factura</h1>
+                            </td>
+                            <td>
+                                Factura #{{codigo}}<br>
+                                Fecha: {{fecha}}<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                AUTOREPUESTOS-CUZ<br>
+                                Calle 123<br>
+                                EL TORNO<br>
+                                ADMINISTRADOR: {{nombre_administrador}}
+                            </td>
+                            <td>
+                                CLIENTE: {{nombre_cliente}}<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>
+                    Método de Pago  
+                </td>
+                <td>
+                    Fecha de Pago
+                </td>
+            </tr>
+            <tr class="details">
+                <td>
+                    {{metodo_pago}}
+                </td>
+                <td>
+                    {{fecha}}
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>Artículo</td>
+                <td>Cantidad</td>
+                <td>Precio Unitario</td>
+                <td>Importe</td>
+            </tr>
+            <tr *ngFor="let fac of listdetallefactura">
+                <td style="text-align: center;">{{ fac.categoria_producto_nombre }}</td>
+                <td style="text-align: center;">{{ fac.cantidad_producto }}</td>
+                <td style="text-align: center;">$ {{ fac.precio_unitario }}</td>
+                <td style="text-align: center;">$ {{ fac.importe }}</td>
+            </tr>
+            <tr class="total">
+                <td colspan="3" style="text-align: right;">SubTotal:</td>
+                <td style="text-align: right">$ {{ total }}</td> 
+            </tr>  
+            <tr class="total">
+                <td colspan="3" style="text-align: right;">Descuento:</td>
+                <td style="text-align: right">$ {{ descuento }}</td> 
+            </tr>    
+            <tr class="total">
+                <td colspan="3" style="text-align: right;">Total:</td>
+                <td style="text-align: right">$ {{ total-descuento }}</td> 
+            </tr>     
+        </table>
+        <button routerLink="/home/vender" type="button" class="btn btn-secondary btn-volver no-print">Volver</button>
+    </div>
+    
+</body>
+
+
+

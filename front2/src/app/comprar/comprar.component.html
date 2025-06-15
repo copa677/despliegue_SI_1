@@ -23,8 +23,11 @@
           <td>{{ listP.metodo_pago_nombre }}</td>
           <td>{{ listP.total }}</td>
           <td>
-            <button *ngIf="eliminar" (click)="deleteBoletaCompra(listP.nroboleta!,listP.nombre_proveedor)" type="button" class="btn btn-primary btn-sm btn-separado">Eliminar</button>
-            <button [routerLink]="['/home/BoletaCompra', listP.nroboleta]" type="button" class="btn btn-primary btn-sm btn-separado">Detalles</button>
+            <button *ngIf="eliminar" (click)="deleteBoletaCompra(listP.nroboleta!,listP.nombre_proveedor)" type="button"
+              class="btn btn-primary btn-sm btn-separado">Eliminar</button>
+            <button (click)="verBoleta(listP.nroboleta)" type="button" class="btn btn-primary btn-sm btn-separado">
+              Detalles
+            </button>
 
           </td>
         </tr>
@@ -33,4 +36,5 @@
   </table>
 </div>
 
-<button *ngIf="insertar" routerLink="/home/Newcompra" type="button" class="btn btn-primary btn-sm btn-separado">Insertar</button>
+<button *ngIf="insertar" routerLink="/home/Newcompra" type="button"
+  class="btn btn-primary btn-sm btn-separado">Insertar</button>

@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Reporte De Actividad</h1>
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <label for="startDate">Fecha de Inicio:</label>
+      <input type="date" id="startDate" class="form-control" [(ngModel)]="filters.startDate">
+    </div>
+    <div class="col-md-4">
+      <label for="startTime">Hora de Inicio:</label>
+      <input type="time" id="startTime" class="form-control" [(ngModel)]="filters.startTime">
+    </div>
+    <div class="col-md-4">
+      <label for="endDate">Fecha de Fin:</label>
+      <input type="date" id="endDate" class="form-control" [(ngModel)]="filters.endDate">
+    </div>
+    <div class="col-md-4">
+      <label for="endTime">Hora de Fin:</label>
+      <input type="time" id="endTime" class="form-control" [(ngModel)]="filters.endTime">
+    </div>
+    <div class="col-md-4">
+      <label for="user">User:</label>
+      <select id="user" class="form-control" [(ngModel)]="filters.User">
+        <option value="">Todos</option>
+        <option *ngFor="let user of users" [value]="user.username">{{ user.username }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-4 d-flex align-items-end">
+      <button class="btn btn-primary btn-block" (click)="applyFilters()">Aplicar Filtros</button>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <button class="btn btn-success btn-block" (click)="exportToExcel()">Exportar a Excel</button>
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-danger btn-block" (click)="exportToPDF()">Exportar a PDF</button>
+    </div>
+  </div>
+  <div class="table-responsive" id="pdfTable">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Fecha/Hora</th>
+          <th>Usuario</th>
+          <th>Direccion IP</th>
+          <th>Descripcion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filterBitacora">
+          <td>{{ item.fechahora }}</td>
+          <td>{{ item.nombre_usuario }}</td>
+          <td>{{ item.ip }}</td>
+          <td>{{ item.descripcion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -57,5 +57,7 @@ export class BoletaCompraComponent implements OnInit{
       })
     });
   }
-
+  volver() {
+  this.router.navigate(['/home/comprar']);
+}
 }

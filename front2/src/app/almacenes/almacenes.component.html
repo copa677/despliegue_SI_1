@@ -25,7 +25,9 @@
             <td>{{ almacen.capacidad_actual }}</td>
             <td>{{ almacen.capacidad_total }}</td>
             <td>
-              <button *ngIf="editar" routerLink="/home/editAlma/{{almacen.id}}" class="btn btn-primary btn-sm" >Editar</button>
+              <button *ngIf="editar" (click)="editarAlmacen(almacen.id!)" class="btn btn-primary btn-sm">
+                Editar
+              </button>
               <button *ngIf="eliminar" (click)="deleteAlamcen(almacen.id!,almacen.nombre)" class="btn btn-secondary btn-sm">Eliminar</button>
             </td>
           </tr>

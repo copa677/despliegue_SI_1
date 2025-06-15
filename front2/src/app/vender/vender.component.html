@@ -1,0 +1,35 @@
+<h2 class="text-center">Facturas</h2>
+<div class="table-responsive">
+  <table id="tablaDatos" class="table table-bordered table-minimalista">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nro Factura</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Administrador</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Método de Pago</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let listP of listfactura">
+        <tr *ngIf="listP">
+          <th scope="row">{{ listP.codigo_factura !== undefined ? listP.codigo_factura - 1000 : '' }}</th>
+          <td>{{ listP.codigo_factura }}</td>
+          <td>{{ listP.nombre_cliente }}</td>
+          <td>{{ listP.nombre_usuario }}</td>
+          <td>{{ listP.fecha }}</td>
+          <td>{{ listP.metodo_pago_nombre }}</td>
+          <td>{{ listP.total }}</td>
+          <td>
+            <button *ngIf="eliminar" (click)="deleteFactura(listP.codigo_factura!,listP.nombre_cliente)" type="button" class="btn btn-primary btn-sm btn-separado">Eliminar</button>
+            <button routerLink="/home/factura/{{listP.codigo_factura}}" type="button" class="btn btn-primary btn-sm btn-separado">Detalles</button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<button *ngIf="insertar" routerLink="/home/formventa" type="button" class="btn btn-primary btn-sm btn-separado">Insertar</button>

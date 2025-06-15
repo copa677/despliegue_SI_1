@@ -1,5 +1,5 @@
 # Fase de construcción
-FROM node:18-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -7,19 +7,19 @@ COPY . .
 RUN npm run build -- --configuration=production
 
 # Fase de producción
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app
 
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/package-lock.json ./
-RUN npm ci --omit=dev
+# Instala http-server para servir la app
+RUN npm install -g http-server
 
-# Estructura exacta que espera server.ts
-COPY --from=builder /app/dist/front-erp-supermercado/browser ./browser
-COPY --from=builder /app/dist/front-erp-supermercado/server ./server
+# Copia solo los archivos del navegador (SSR está desactivado)
+COPY --from=builder /app/dist/front2/browser ./browser
 
+# Variables de entorno
 ENV NODE_ENV=production
 ENV PORT=4000
 EXPOSE 4000
 
-CMD ["node", "server/server.mjs"]
+# Comando para servir la app
+CMD ["http-server", "browser", "-p", "4000"]

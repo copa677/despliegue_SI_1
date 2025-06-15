@@ -1,0 +1,31 @@
+<h2 class="text-center">Notas de Salida</h2>
+<div class="table-responsive">
+    <table class="table table-bordered table-minimalista">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nro de Salida</th>
+            <th scope="col">Origen</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let listN of listNotaSalidas">
+              <tr *ngIf="listN">
+                <th scope="row">{{ listN.cod !== undefined ? listN.cod - 1000 : '' }}</th>
+                <td>{{ listN.cod }}</td>
+                <td>{{ listN.origen }}</td>
+                <td>{{ listN.descripcion }}</td>
+                <td>{{ listN.fecha }}</td>
+                <td>
+                  <button *ngIf="eliminar" (click)="deleteNotaSalida(listN.cod!,listN.origen)" type="button" class="btn btn-primary btn-sm btn-separado">Eliminar</button>
+                  <button routerLink="/home/Updnotasalida/{{listN.cod!}}"  type="button" class="btn btn-primary btn-sm btn-separado">Detalles</button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+      </table>
+</div>
+
+<button *ngIf="insertar" routerLink="/home/Newnotasalida" type="button" class="btn btn-primary btn-sm btn-separado">Insertar</button>

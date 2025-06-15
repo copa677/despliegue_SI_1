@@ -16,6 +16,15 @@ import { ComprarComponent } from './comprar/comprar.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { NewCompraComponent } from './new-compra/new-compra.component';
 import { BoletaCompraComponent } from './boleta-compra/boleta-compra.component';
+import { ReporteCompraComponent } from './reporteCompra/reportes.component';
+import { ReporteVentaComponent } from './reporte-venta/reporte-venta.component';
+import { ReporteActividadComponent } from './reporte-actividad/reporte-actividad.component';
+import { AnalisisComponent } from './analisis/analisis.component';
+import { FormVentaComponent } from './form-venta/form-venta.component';
+import { FacturaComponent } from './factura/factura.component';
+import { NotaSalidaComponent } from './nota-salida/nota-salida.component';
+import { UpdNewNotaSalidaComponent } from './upd-new-nota-salida/upd-new-nota-salida.component';
+import { VenderComponent } from './vender/vender.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login',pathMatch:'full'},
@@ -39,6 +48,16 @@ export const routes: Routes = [
     { path: 'comprar', component : ComprarComponent},
     { path: 'Newcompra', component : NewCompraComponent},
     { path: 'BoletaCompra/:cod', component : BoletaCompraComponent},
+    
+    { path: 'reportecompra', component : ReporteCompraComponent},
+    { path: 'reporteventa', component : ReporteVentaComponent},
+    { path: 'reporteactividad', component : ReporteActividadComponent},
+    { path: 'analisis', component : AnalisisComponent},
+    { path: 'formventa', component : FormVentaComponent }, 
+    { path: 'factura/:codigo', component : FacturaComponent }, 
+    { path: 'notasalida', component : NotaSalidaComponent},
+    { path: 'Newnotasalida', component : UpdNewNotaSalidaComponent},
+    { path: 'vender', component : VenderComponent },
   ]},
   { path: '**',redirectTo: 'login',pathMatch:'full'},
 ];

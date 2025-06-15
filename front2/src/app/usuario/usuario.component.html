@@ -22,8 +22,12 @@
           <td>{{ listU.telefono }}</td>
           <td>{{ userHabilitadoMap[listU.username] }}</td>
           <td>
-            <button *ngIf="eliminar" (click)="DesabilitarUser(listU.username)" type="button" class="btn btn-primary btn-sm btn-separado">Deshabilitar</button>
-            <button *ngIf="editar" [routerLink]="['/home/userpermisos', listU.username]" type="button" class="btn btn-primary btn-sm btn-separado">Permisos</button>
+            <button *ngIf="eliminar" (click)="DesabilitarUser(listU.username)" type="button"
+              class="btn btn-primary btn-sm btn-separado">Deshabilitar</button>
+            <button *ngIf="editar" (click)="irAPermisos(listU.username)" type="button"
+              class="btn btn-primary btn-sm btn-separado">
+              Permisos
+            </button>
           </td>
         </tr>
       </ng-container>
@@ -31,4 +35,5 @@
   </table>
 </div>
 
-<button *ngIf="insertar" routerLink="/home/registro" type="button" class="btn btn-primary btn-sm btn-separado">Insertar</button>
+<button *ngIf="insertar" routerLink="/home/registro" type="button"
+  class="btn btn-primary btn-sm btn-separado">Insertar</button>

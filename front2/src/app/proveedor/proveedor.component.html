@@ -16,10 +16,12 @@
                     <td>{{ proveedor.direccion }}</td>
                     <td>{{ proveedor.telefono }}</td>
                     <td>
-                        <button *ngIf="eliminar" class="btn btn-primary btn-sm" (click)="deleteProveedor(proveedor.codigo!,proveedor.nombre)">
+                        <button *ngIf="eliminar" class="btn btn-primary btn-sm"
+                            (click)="deleteProveedor(proveedor.codigo!,proveedor.nombre)">
                             Eliminar
                         </button>
-                        <button *ngIf="editar" class="btn btn-secondary btn-sm" [routerLink]="'/home/edit/' + proveedor.codigo">
+                        <button *ngIf="editar" class="btn btn-secondary btn-sm"
+                            (click)="editarProveedor(proveedor.codigo!)">
                             Modificar
                         </button>
                     </td>

@@ -1,0 +1,48 @@
+<div class="container">
+    <h2>{{operacion}} Nota de Salida</h2>
+    <form class=".container">
+      <label for="origen">Origen:</label>
+      <select id="origen" name="origen" required [(ngModel)]="origen" #origenInput="ngModel">
+        <option value="almacen">almacen</option>
+        <option value="stock">stock</option>
+      </select>
+  
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" name="descripcion" required [(ngModel)]="descripcion" #descripcionInput="ngModel">
+  
+      <label for="producto">Producto:</label>
+      <select id="producto" name="producto" [(ngModel)]="productoSeleccionado">
+        <option *ngFor="let producto of listproducts" [ngValue]="producto">{{ producto.categoria }}</option>
+      </select>
+  
+      <label for="cantidad">Cantidad:</label>
+      <input type="number" id="cantidad" name="cantidad" min="1" value="1" [(ngModel)]="cantidadSeleccionada">
+  
+      <button type="button" *ngIf="cod==0 || editar" (click)="agregarProducto()">Agregar producto</button>
+    </form>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productosSeleccionados">
+          <td>{{ producto.producto.categoria }}</td>
+          <td>{{ producto.cantidad }}</td>
+          <td><button *ngIf="cod==0 || editar" (click)="eliminarProducto(producto)">Eliminar</button>
+            <button *ngIf="cod !== 0 && editar" (click)="edpr(producto, i)">Editar</button>
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="button-container">
+      <button *ngIf="cod==0 || editar" (click)="confirm()">Confirmar</button>
+      <button routerLink="/home/notasalida">Volver</button>
+    </div>
+  </div>
+  

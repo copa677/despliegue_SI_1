@@ -8,6 +8,7 @@ import { BitacoraService } from '../../services/bitacora.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -16,7 +17,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
 })
-export class UsuarioComponent implements OnInit{
+export class UsuarioComponent implements OnInit {
   userHabilitadoMap: { [key: string]: boolean } = {};
   username: string = "";
 
@@ -25,7 +26,7 @@ export class UsuarioComponent implements OnInit{
   eliminar: boolean = false;
   listUser: User[] = [];
 
-  Uver:boolean = false;
+  Uver: boolean = false;
   Uinsertar: boolean = false;
   Ueditar: boolean = false;
   Ueliminar: boolean = false;
@@ -33,8 +34,9 @@ export class UsuarioComponent implements OnInit{
     private _userServices: UserService,
     private _permisoServices: PermisosService,
     private toastr: ToastrService,
-    private _bitacoraServices: BitacoraService
-  ){
+    private _bitacoraServices: BitacoraService,
+    private router: Router
+  ) {
 
   }
 
@@ -44,31 +46,32 @@ export class UsuarioComponent implements OnInit{
     this.getPermisos();
   }
 
-  getlistUsers(){
-    this._userServices.getUsers().subscribe((data: User[])=>{
-      this.listUser=data;
+  getlistUsers() {
+    this._userServices.getUsers().subscribe((data: User[]) => {
+      this.listUser = data;
       this.listUser.forEach(user => {
         this.Habilitado(user.username);
       });
     })
   }
 
-  Habilitado(username:string){
-    this._permisoServices.getPermiso(username,"usuario").subscribe((data: Permiso[])=>{
-      data.forEach((p: Permiso)=>{
+  Habilitado(username: string) {
+    this._permisoServices.getPermiso(username, "usuario").subscribe((data: Permiso[]) => {
+      data.forEach((p: Permiso) => {
         this.userHabilitadoMap[username] = p.perm_habilitado;
       })
     })
   }
 
-  DesabilitarUser(username: string){
-
-    this._permisoServices.getPermiso(username,"usuario").subscribe((data: Permiso[])=>{
-      data.forEach((p: Permiso)=>{
+  DesabilitarUser(username: string) {
+    console.log("entrada a desabilitar user");
+    this._permisoServices.getPermiso(username, "usuario").subscribe((data: Permiso[]) => {
+      data.forEach((p: Permiso) => {
         this.Uver = p.perm_ver;
         this.Uinsertar = p.perm_eliminar;
         this.Ueditar = p.perm_editar!;
         this.Ueliminar = p.perm_eliminar;
+        console.log("permiso obetenido ",p);
       })
     })
     const permi: Permiso = {
@@ -78,8 +81,8 @@ export class UsuarioComponent implements OnInit{
       perm_eliminar: this.Ueliminar,
       perm_ver: this.Uver
     }
-    this._permisoServices.updatePermiso(permi).subscribe(()=>{
-      this.toastr.warning(`Usuario: ${username} desabilitado con exito`,"Usuario desabilitado");
+    this._permisoServices.updatePermiso(permi).subscribe(() => {
+      this.toastr.warning(`Usuario: ${username} desabilitado con exito`, "Usuario desabilitado");
       this._bitacoraServices.ActualizarBitacora(`Desabilito al usuario: ${username}`)
     })
 
@@ -88,15 +91,15 @@ export class UsuarioComponent implements OnInit{
         this.userHabilitadoMap[username] = p.perm_habilitado;
       });
     });
-    
+
   }
 
-  getPermisos(){
-    this._permisoServices.getPermiso(this.username,"usuario").subscribe((data: Permiso[])=>{
-      data.forEach((p: Permiso)=>{
-        this.insertar=p.perm_insertar;
-        this.editar=p.perm_editar!;
-        this.eliminar=p.perm_eliminar;
+  getPermisos() {
+    this._permisoServices.getPermiso(this.username, "usuario").subscribe((data: Permiso[]) => {
+      data.forEach((p: Permiso) => {
+        this.insertar = p.perm_insertar;
+        this.editar = p.perm_editar!;
+        this.eliminar = p.perm_eliminar;
       })
     })
   }
@@ -104,17 +107,20 @@ export class UsuarioComponent implements OnInit{
   getUsernameFromToken() {
     const token = localStorage.getItem('token'); // Obtén el token JWT almacenado en el localStorage
     if (token) {
-      const tokenParts = token.split('.'); 
+      const tokenParts = token.split('.');
       if (tokenParts.length === 3) {
         const payload = JSON.parse(atob(tokenParts[1])); // Decodifica la parte del payload
-        this.username = payload.username; 
-       
+        this.username = payload.username;
+
       } else {
-        this.toastr.error('El token no tiene el formato esperado.','Error');
+        this.toastr.error('El token no tiene el formato esperado.', 'Error');
       }
     } else {
-      this.toastr.error('No se encontró un token en el localStorage.','Error');
+      this.toastr.error('No se encontró un token en el localStorage.', 'Error');
     }
+  }
+  irAPermisos(username: string) {
+    this.router.navigate(['/home/userpermisos', username]);
   }
 
 }

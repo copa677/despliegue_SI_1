@@ -8,6 +8,7 @@ import { Permiso } from '../interfaces/permiso';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comprar',
@@ -17,20 +18,21 @@ import { RouterModule } from '@angular/router';
   styleUrl: './comprar.component.css'
 })
 export class ComprarComponent implements OnInit {
-  
+
   insertar: boolean = false;
   eliminar: boolean = false;
   username: string = "";
 
-  listcompra: Boleta_Compra[]=[];
+  listcompra: Boleta_Compra[] = [];
 
 
   constructor(
-    private _permiso:PermisosService,
-    private _boletacompraServices:BoletacompraService,
-    private toastr:ToastrService,
+    private _permiso: PermisosService,
+    private _boletacompraServices: BoletacompraService,
+    private toastr: ToastrService,
     private _bitacoraServices: BitacoraService,
-  ){
+    private router: Router,
+  ) {
 
   }
 
@@ -40,11 +42,11 @@ export class ComprarComponent implements OnInit {
     this.getListBoletaCompra();
   }
 
-  getPermisos(){
-    this._permiso.getPermiso(this.username,"comprar").subscribe((data: Permiso[])=>{
-      data.forEach((perm:Permiso)=>{
-        this.insertar=perm.perm_insertar;
-        this.eliminar=perm.perm_eliminar;
+  getPermisos() {
+    this._permiso.getPermiso(this.username, "comprar").subscribe((data: Permiso[]) => {
+      data.forEach((perm: Permiso) => {
+        this.insertar = perm.perm_insertar;
+        this.eliminar = perm.perm_eliminar;
       })
     })
   }
@@ -52,31 +54,38 @@ export class ComprarComponent implements OnInit {
   getUsernameFromToken() {
     const token = localStorage.getItem('token'); // Obtén el token JWT almacenado en el localStorage
     if (token) {
-      const tokenParts = token.split('.'); 
+      const tokenParts = token.split('.');
       if (tokenParts.length === 3) {
         const payload = JSON.parse(atob(tokenParts[1])); // Decodifica la parte del payload
-        this.username = payload.username; 
-       
+        this.username = payload.username;
+
       } else {
-        this.toastr.error('El token no tiene el formato esperado.','Error');
+        this.toastr.error('El token no tiene el formato esperado.', 'Error');
       }
     } else {
-      this.toastr.error('No se encontró un token en el localStorage.','Error');
+      this.toastr.error('No se encontró un token en el localStorage.', 'Error');
     }
   }
 
-  getListBoletaCompra(){
-    this._boletacompraServices.MostrarBoletasCompra().subscribe((data:Boleta_Compra[])=>{
-      this.listcompra=data;
+  getListBoletaCompra() {
+    this._boletacompraServices.MostrarBoletasCompra().subscribe((data: Boleta_Compra[]) => {
+      this.listcompra = data;
     });
   }
 
-  deleteBoletaCompra(codBoletaCom: number,proveedor: string){
-    this._boletacompraServices.delete_BoletaCompra_Detalle(codBoletaCom).subscribe(()=>{
-      this.toastr.warning('Boleta de Compra Eliminada e Inventario Actualizado con Existo',"Boleta de Compra Eliminada");
+  deleteBoletaCompra(codBoletaCom: number, proveedor: string) {
+    this._boletacompraServices.delete_BoletaCompra_Detalle(codBoletaCom).subscribe(() => {
+      this.toastr.warning('Boleta de Compra Eliminada e Inventario Actualizado con Existo', "Boleta de Compra Eliminada");
       this._bitacoraServices.ActualizarBitacora(`Elimino la Boleta de Compra del proveedor: ${proveedor} y se Actualizo el Inventario de los productos`)
       this.getListBoletaCompra();
     })
+  }
+  verBoleta(nro: number | undefined) {
+    if (nro !== undefined) {
+      this.router.navigate(['/home/BoletaCompra', nro.toString()]);
+    } else {
+      this.toastr.error('Número de boleta no válido.', 'Error');
+    }
   }
 
 }

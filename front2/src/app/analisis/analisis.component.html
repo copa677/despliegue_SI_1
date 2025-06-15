@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Reporte De Ventas</h1>
+    
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <label for="producto">Producto:</label>
+            <select id="producto" class="form-control" [(ngModel)]="filters.producto">
+                <option value="">Todos</option>
+                <option *ngFor="let product of productos" [value]="product.categoria">{{ product.categoria }}</option>
+            </select>
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <button class="btn btn-primary btn-block" (click)="applyFilters()">Aplicar Filtros</button>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <button class="btn btn-success btn-block" (click)="exportToExcel()">Exportar a Excel</button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-danger btn-block" (click)="exportToPDF()">Exportar a PDF</button>
+        </div>
+    </div>
+    <div class="table-responsive" id="pdfTable">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Stock</th>
+                    <th>Precio Compra</th>
+                    <th>Precio Venta</th>
+                    <th>Ganancia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of filteredVentaConDetalle">
+                    <td>{{ item.categoria }}</td>
+                    <td>{{ item.stock }}</td>
+                    <td>{{ item.precio_compra }}</td>
+                    <td>{{ item.precio_venta }}</td>
+                    <td>{{ item.precio_venta - item.precio_compra }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
